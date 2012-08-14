@@ -1,0 +1,1 @@
+A node web app that renders screenshots of web pages using phantomjs and serves them up.
