@@ -28,11 +28,16 @@ server.on 'request', (request, response) ->
       mimeHeader = 'Content-Type': "image/#{format}"
 
       if code is 0
-        response.writeHead 200, mimeHeader
+        response.writeHead 201, mimeHeader
         response.end new Buffer imageData.toString().replace(/\n/, ''), 'base64'
       else
         response.writeHead 500, mimeHeader
         response.end()
-  else
+
+  else if request.url is '/' and /html/.test request.headers.accept
     response.writeHead 200, 'Content-Type': 'text/html'
     response.end index
+
+  else
+    response.statusCode = 404
+    response.end()
