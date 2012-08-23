@@ -25,8 +25,10 @@ server.on 'request', (request, response) ->
 
     url2image.on 'exit', (code) ->
       if code is 0
+        responseData = new Buffer imageData.toString().replace(/\n/, ''), 'base64'
+        response.setHeader 'Content-Length', responseData.length
         response.writeHead 201, mimeHeader
-        response.end new Buffer imageData.toString().replace(/\n/, ''), 'base64'
+        response.end responseData
       else
         response.writeHead 500, mimeHeader
         response.end()
