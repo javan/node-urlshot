@@ -1,1 +1,75 @@
-Usage: ?url=http://example.com
+<!doctype html>
+<html>
+  <head>
+    <title>urlshot: URL &rarr; image</title>
+    <style type="text/css">
+      body {
+        font-family: Menlo, Monaco, mono-spaced;
+        color: #444;
+        background: #fff;
+        font-size: 11px;
+        line-height: 15px;
+        width: 580px;
+        margin: 40px 20px 20px 40px;
+      }
+
+      h1, h2, h3 {
+        font-size: 11px;
+        font-weight: normal;
+      }
+
+      a {
+        color: darkblue;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      pre {
+        font-family: Menlo, Monaco, mono-spaced;
+      }
+
+      .spacer {
+        margin-top: 20px;
+      }
+
+      footer span.copy {
+        font-family: Hevetica, Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <strong><a href="https://github.com/javan/node-urlshot">urlshot</a></strong> uses phantomjs and nodejs to render images of webpages.
+      </h1>
+      <h2 class="spacer">
+        Example: <a href="/?url=http://nytimes.com/">/?url=http://nytimes.com/</a>
+      </h2>
+      <h3>
+        Loaded example: <a href="/?url=http://reddit.com/&viewport=500x900&scrollto=200&format=jpg">/?url=http://reddit.com/&viewport=500x900&scrollto=200&format=jpg</a>
+      </h3>
+    </header>
+
+    <section>
+      <strong>Params:</strong>
+      <pre>
+       url: The webpage to render an image of.   Required.
+  viewport: The size of the browser "window".    default: 1024x768
+  scrollto: Number of pixels to scroll down.     default: 0
+  fullpage: Render the whole webpage.            default: false
+    format: Type of image to render. png or jpg. default: png
+      </pre>
+    </section>
+
+    <section>
+      <p>It is recommended that you install and run your own instance of urlshot; linking to images on the free heroku-hosted demo app is a recipe for 500s.</p>
+    </section>
+
+    <footer>
+      <p><span class="copy">&copy;</span> 2012 <a href="http://javan.us/">Javan Makhmali</a>. <a href="https://github.com/javan/node-urlshot">Fork on github</a>.</p>
+    </footer>
+  </body>
+</html>
