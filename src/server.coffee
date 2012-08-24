@@ -8,6 +8,13 @@ index = fs.readFileSync 'public/index.html'
 server = http.createServer()
 server.listen process.env.PORT or 8888
 
+cacheSeconds = process.env.CACHE_SECONDS or 24 * 60 * 60
+
+expirationDate = ->
+  date = new Date()
+  date.setTime date.getTime() + cacheSeconds * 1000
+  date.toUTCString()
+
 server.on 'request', (request, response) ->
   params = url.parse(request.url, true).query
 
@@ -27,6 +34,8 @@ server.on 'request', (request, response) ->
       if code is 0
         responseData = new Buffer imageData.toString().replace(/\n/, ''), 'base64'
         response.setHeader 'Content-Length', responseData.length
+        response.setHeader 'Cache-Control', "public, max-age=#{cacheSeconds}"
+        response.setHeader 'Expires', expirationDate()
         response.writeHead 201, mimeHeader
         response.end responseData
       else
